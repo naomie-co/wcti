@@ -1,0 +1,19 @@
+mysql> SELECT
+    ->  rental.customer_id, customer.last_name AS "NOM", customer.first_name AS "PRENOM", COUNT(*) AS total_rent, address.address, address.latitude, address.longitude
+    -> FROM
+    ->  rental
+    -> JOIN customer
+    -> ON rental.customer_id = customer.customer_id
+    -> JOIN address
+    -> ON customer.address_id = address.address_id
+    -> GROUP BY
+    ->  customer_id
+    -> ORDER BY
+    ->  total_rent DESC LIMIT 1;
++-------------+------+---------+------------+--------------------+-------------+------------+
+| customer_id | NOM  | PRENOM  | total_rent | address            | latitude    | longitude  |
++-------------+------+---------+------------+--------------------+-------------+------------+
+|         148 | HUNT | ELEANOR |         46 | 17 IMP DES JARDINS | 46.10685120 | 5.96633850 |
++-------------+------+---------+------------+--------------------+-------------+------------+
+1 row in set (0.01 sec)
+
